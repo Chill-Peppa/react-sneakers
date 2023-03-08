@@ -1,9 +1,13 @@
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #e7f6ff;
+  }
+
+/*------- ДЛЯ ВСЕХ ЭЛЕМЕНТОВ -------*/
+  * {
+    font-family: 'Inter', sans-serif;
   }
   
   .wrapper {
@@ -65,9 +69,31 @@ body {
   
   .content {
     padding: 40px;
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    justify-content: space-between;
     h1 {
       margin: 0;
-      margin-bottom: 40px;
+    }
+  }
+
+  .search-block {
+    border: 1px solid #f3f3f3;
+    border-radius: 10px;
+    display: flex;
+    padding: 0 15px;
+
+    input {
+      border: 0;
+      padding: 13px;
+      font-size: 16px;
+      box-sizing: border-box;
+      width: 200px;
+      outline: none;
     }
   }
   

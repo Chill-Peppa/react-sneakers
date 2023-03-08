@@ -38,7 +38,13 @@ function App() {
         </ul>
       </header>
       <main className="content">
-        <h1>Все кроссовки</h1>
+        <div className="search-container">
+          <h1>Все кроссовки</h1>
+          <div className="search-block">
+            <img src="/images/search.svg" alt="Search icon" />
+            <input placeholder="Поиск..." />
+          </div>
+        </div>
 
         <div className="sneakers">
           <div className="card">
