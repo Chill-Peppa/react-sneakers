@@ -107,6 +107,17 @@ body {
     padding: 30px;
     width: 220px;
     border-radius: 40px;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+    &:hover {
+      box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06);
+      transform: translateY(-5px);
+    }
+
+    .favorite {
+      position: absolute;
+      cursor: pointer;
+    }
   
     h5 {
       font-weight: 400;
@@ -141,5 +152,64 @@ body {
       width: 32px;
       height: 32px;
       cursor: pointer;
+    }
+  }
+
+  .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .drawer {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 420px;
+    background: #fff;
+    box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .cartItem {
+    border: 1px solid #f3f3f3;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+    border-bottom: 20px;
+
+    img {
+      margin-right: 20px;
+      transform: translateY(-7px);
+    }
+    div {
+      margin-right: 20px;
+      p {
+        font-size: 16px;
+      }
+      b {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .removeButton {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in-out;
+    &:hover {
+      opacity: 1;
     }
   }

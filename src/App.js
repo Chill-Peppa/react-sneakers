@@ -1,6 +1,47 @@
 function App() {
   return (
     <div className="wrapper">
+      <div className="overlay">
+        <div className="drawer">
+          <h2>Корзина</h2>
+
+          <div className="cartItem">
+            <img
+              width={70}
+              height={70}
+              src="/images/sneakers/1.png"
+              alt="Sneakers"
+            />
+            <div>
+              <p>Мужские Кроссовки Nike Air Max 270</p>
+              <b>12 999 руб.</b>
+            </div>
+            <img
+              className="removeButton"
+              src="/images/btn-remove.svg"
+              alt="Button delete"
+            />
+          </div>
+
+          <div className="cartItem">
+            <img
+              width={70}
+              height={70}
+              src="/images/sneakers/1.png"
+              alt="Sneakers"
+            />
+            <div>
+              <p>Мужские Кроссовки Nike Air Max 270</p>
+              <b>12 999 руб.</b>
+            </div>
+            <img
+              className="removeButton"
+              src="/images/btn-remove.svg"
+              alt="Button delete"
+            />
+          </div>
+        </div>
+      </div>
       <header>
         <div className="headerLeft">
           <img
@@ -48,6 +89,9 @@ function App() {
 
         <div className="sneakers">
           <div className="card">
+            <div class="favorite">
+              <img src="/images/heart-unliked.svg" alt="Unliked button" />
+            </div>
             <img
               width={133}
               height={122}
