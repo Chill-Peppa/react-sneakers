@@ -1,6 +1,6 @@
 import React from "react";
 
-function Drawer() {
+function Drawer(props) {
   return (
     <div className="overlay">
       <div className="drawer">
@@ -8,6 +8,7 @@ function Drawer() {
           <div className="cartHeader">
             <h2>Корзина</h2>
             <img
+              onClick={props.onClose}
               className="removeButton"
               src="/images/btn-remove.svg"
               alt="Button delete"
