@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import { Routes, Route } from "react-router-dom";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
@@ -6,34 +8,53 @@ import Drawer from "./components/Drawer";
 function App() {
   const [items, setItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
+  const [favorites, setFavorites] = React.useState([]);
   const [cartItems, setCartItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
-    fetch("https://640c96d8a3e07380e8f84539.mockapi.io/items")
+    axios
+      .get("https://640c96d8a3e07380e8f84539.mockapi.io/items")
       .then((res) => {
-        return res.json();
-      })
-      .then((json) => setItems(json));
+        setItems(res.data);
+      });
+
+    axios
+      .get("https://640c96d8a3e07380e8f84539.mockapi.io/cart")
+      .then((res) => {
+        setCartItems(res.data);
+      });
   }, []);
 
-  //вместо setCartItems([...cartItems, obj]);
-  //лучше использовать анонимную функцию с prev.
-  //prev - предыдущее значение. Чтобы случайно не получить устаревшие данные
+  const onAddToFavorite = (obj) => {
+    axios.post("https://640c96d8a3e07380e8f84539.mockapi.io/cart", obj);
+    setFavorites((prev) => [...prev, obj]);
+  };
+
+  const onRemoveItem = (id) => {
+    console.log(id);
+    axios.delete(`https://640c96d8a3e07380e8f84539.mockapi.io/cart/${id}`);
+    setCartItems((prev) => prev.filter((item) => item.id !== id));
+  };
+
   const onAddToCart = (obj) => {
+    axios.post("https://640c96d8a3e07380e8f84539.mockapi.io/cart", obj);
     setCartItems((prev) => [...prev, obj]);
   };
 
   //создадим метод, чтобы вытащить значения из инпута
   const searchInput = (e) => {
-    //console.log(e.target.value);
     setSearchValue(e.target.value);
   };
 
   return (
     <div className="wrapper">
       {cartOpened ? (
-        <Drawer items={cartItems} onClose={() => setCartOpened(false)} />
+        <Drawer
+          items={cartItems}
+          onClose={() => setCartOpened(false)}
+          onRemove={onRemoveItem}
+        />
       ) : (
         ""
       )}
@@ -74,7 +95,7 @@ function App() {
                 title={item.title}
                 imageUrl={item.imageUrl}
                 price={item.price}
-                onFavorite={() => console.log("Добавили в закладки")}
+                onFavorite={(obj) => onAddToFavorite(obj)}
                 onPlus={(obj) => onAddToCart(obj)}
               />
             ))}
