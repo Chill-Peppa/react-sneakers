@@ -1,6 +1,6 @@
 import React from "react";
 
-function Drawer(props) {
+function Drawer({ onClose, items = [] }) {
   return (
     <div className="overlay">
       <div className="drawer">
@@ -8,64 +8,27 @@ function Drawer(props) {
           <div className="cartHeader">
             <h2>Корзина</h2>
             <img
-              onClick={props.onClose}
+              onClick={onClose}
               className="removeButton"
               src="/images/btn-remove.svg"
               alt="Button delete"
             />
           </div>
           <div className="items">
-            <div className="cartItem">
-              <img
-                width={70}
-                height={70}
-                src="/images/sneakers/1.png"
-                alt="Sneakers"
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>12 999 руб.</b>
+            {items.map((obj) => (
+              <div className="cartItem">
+                <img width={70} height={70} src={obj.imageUrl} alt="Sneakers" />
+                <div>
+                  <p>{obj.title}</p>
+                  <b>{obj.price} руб.</b>
+                </div>
+                <img
+                  className="removeButton"
+                  src="/images/btn-remove.svg"
+                  alt="Button delete"
+                />
               </div>
-              <img
-                className="removeButton"
-                src="/images/btn-remove.svg"
-                alt="Button delete"
-              />
-            </div>
-            <div className="cartItem">
-              <img
-                width={70}
-                height={70}
-                src="/images/sneakers/1.png"
-                alt="Sneakers"
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>12 999 руб.</b>
-              </div>
-              <img
-                className="removeButton"
-                src="/images/btn-remove.svg"
-                alt="Button delete"
-              />
-            </div>
-            <div className="cartItem">
-              <img
-                width={70}
-                height={70}
-                src="/images/sneakers/1.png"
-                alt="Sneakers"
-              />
-              <div>
-                <p>Мужские Кроссовки Nike Air Max 270</p>
-                <b>12 999 руб.</b>
-              </div>
-              <img
-                className="removeButton"
-                src="/images/btn-remove.svg"
-                alt="Button delete"
-              />
-            </div>
+            ))}
           </div>
         </div>
         <div className="cartTotalBlock">

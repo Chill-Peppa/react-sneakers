@@ -5,6 +5,7 @@ import Drawer from "./components/Drawer";
 
 function App() {
   const [items, setItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([]);
   const [cartOpened, setCartOpened] = React.useState(false);
 
   React.useEffect(() => {
@@ -15,9 +16,22 @@ function App() {
       .then((json) => setItems(json));
   }, []);
 
+  //вместо setCartItems([...cartItems, obj]);
+  //лучше использовать анонимную функцию с prev.
+  //prev - предыдущее значение. Чтобы случайно не получить устаревшие данные
+  const onAddToCart = (obj) => {
+    setCartItems((prev) => [...prev, obj]);
+  };
+
+  console.log(cartItems);
+
   return (
     <div className="wrapper">
-      {cartOpened ? <Drawer onClose={() => setCartOpened(false)} /> : ""}
+      {cartOpened ? (
+        <Drawer items={cartItems} onClose={() => setCartOpened(false)} />
+      ) : (
+        ""
+      )}
       <Header onCartClick={() => setCartOpened(true)} />
       <main className="content">
         <div className="search-container">
@@ -29,13 +43,13 @@ function App() {
         </div>
 
         <div className="sneakers">
-          {items.map((obj) => (
+          {items.map((item) => (
             <Card
-              title={obj.name}
-              imageUrl={obj.imageUrl}
-              price={obj.price}
+              title={item.name}
+              imageUrl={item.imageUrl}
+              price={item.price}
               onFavorite={() => console.log("Добавили в закладки")}
-              onPlus={() => console.log("Добавили в корзину")}
+              onPlus={(obj) => onAddToCart(obj)}
             />
           ))}
         </div>
