@@ -11,7 +11,7 @@ function Card({ onFavorite, onPlus, imageUrl, price, title }) {
 
   return (
     <div className={styles.card}>
-      <div class={styles.favorite} onClick={onFavorite}>
+      <div className={styles.favorite} onClick={onFavorite}>
         <img src="/images/heart-unliked.svg" alt="Unliked button" />
       </div>
       <img width={133} height={122} src={imageUrl} alt="Sheakers" />
